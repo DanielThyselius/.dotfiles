@@ -16,17 +16,20 @@ local plugins = {
     },
     {
         'nvim-treesitter/nvim-treesitter',
-        build = ':TSUpdate'
+        build = ':TSUpdate',
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter-context",
+        }
     },
     { "onsails/lspkind-nvim" }, -- pictograms for autocomplete menu
     { "theprimeagen/harpoon" }, -- qick navigation between files
-    { "mbbill/undotree" }, -- amazing undo navigation
+    { "mbbill/undotree" },      -- amazing undo navigation
     { "tpope/vim-fugitive" },
-    { "nvim-treesitter/nvim-treesitter-context" },
-    { "mattn/emmet-vim"}, -- emmet-like snippets
+    { "mattn/emmet-vim", }, -- emmet-like snippets
     {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v1.x',
+        lazy = false,
         dependencies = {
             -- LSP Support
             { 'neovim/nvim-lspconfig' },

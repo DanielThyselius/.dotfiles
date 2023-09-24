@@ -1,7 +1,8 @@
 local lsp = require("lsp-zero")
-
+local lspkind = require("lspkind")
+--
 lsp.preset("recommended")
-
+--
 lsp.ensure_installed({
     'tsserver',
     'rust_analyzer',
@@ -22,26 +23,9 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
     ['<Tab>'] = cmp.mapping.confirm({ select = true }),
 })
 
--- I use tab to complete, if not, disable tab here
--- cmp_mappings['<Tab>'] = nil
-cmp_mappings['<S-Tab>'] = nil
-lsp.setup_nvim_cmp({
-    mapping = cmp_mappings
-})
-
-cmp.setup({
-    window = {
-        completion = cmp.config.window.bordered(),
-    },
-    formatting = {
-        fields = { 'abbr', 'kind', 'menu' },
-        format = require('lspkind').cmp_format({
-            mode = 'symbol',       -- show only symbol annotations
-            maxwidth = 280,         -- prevent the popup from showing more than provided characters
-            ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead
-        })
-    }
-})
+---- I use tab to complete, if not, disable tab here
+---- cmp_mappings['<Tab>'] = nil
+--cmp_mappings['<S-Tab>'] = nil
 
 lsp.set_preferences({
     suggest_lsp_servers = true,
@@ -69,6 +53,22 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 lsp.setup()
+
+
+cmp.setup({
+    window = {
+        completion = cmp.config.window.bordered(),
+    },
+    mapping = cmp_mappings,
+    formatting = {
+        fields = { 'abbr', 'kind', 'menu' },
+        format = lspkind.cmp_format({
+            mode = 'symbol_text',       -- show only symbol annotations
+            maxwidth = 100,         -- prevent the popup from showing more than provided characters
+            ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead
+        })
+    }
+})
 
 vim.diagnostic.config({
     virtual_text = true
