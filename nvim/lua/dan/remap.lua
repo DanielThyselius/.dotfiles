@@ -57,29 +57,15 @@ vim.keymap.set("n", "<leader>pe", vim.cmd.Ex)
 vim.keymap.set({"n","v"}, "H", "^")
 vim.keymap.set({"n","v"}, "L", "$")
 
+-- make ctrl + arrows work like in normal mode
+vim.keymap.set("i", "<C-left>", "<esc>Bi")
+vim.keymap.set("i", "<C-right>", "<esc>Wi")
+
 -- jump a page up/down whilest keeping cursor position
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-up>", "<C-u>zz")
 vim.keymap.set("n", "<C-down>", "<C-d>zz")
-
--- Navigate panes with arrows or hjkl
-vim.keymap.set({"n", "i", "v"}, "<M-up>", "<C-w>k")
-vim.keymap.set({"n", "i", "v"}, "<M-down>", "<C-w>j")
-vim.keymap.set({"n", "i", "v"}, "<M-left>", "<C-w>h")
-vim.keymap.set({"n", "i", "v"}, "<M-right>", "<C-w>l")
-
-vim.keymap.set({"n", "i", "v"}, "<M-k>", "<C-w>k")
-vim.keymap.set({"n", "i", "v"}, "<M-j>", "<C-w>j")
-vim.keymap.set({"n", "i", "v"}, "<M-h>", "<C-w>h")
-vim.keymap.set({"n", "i", "v"}, "<M-l>", "<C-w>l")
-
--- rwap orientation of panes 
-vim.keymap.set("n", "<leader>tv", "<C-w>t<C-w>H") -- to horizontal
-vim.keymap.set("n", "<leader>th", "<C-w>t<C-w>K") -- to vertical
-
-vim.keymap.set("n", "<M-v>", ":vsplit<cr>")
-vim.keymap.set("n", "<M-h>", ":split<cr>")
 
 -- go to next what? would this be better to jump up down pages?
 --vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
@@ -98,7 +84,25 @@ vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv") -- move selected line(s) down(v
 -- Alt + up/down arrows to move line(s) in all modes
 vim.keymap.set("n", "<A-up>", ":m .-2<CR>==") -- move line up(n)
 vim.keymap.set("n", "<A-down>", ":m .+1<CR>==") -- move line down(n)
-vim.keymap.set("i", "<A-up>", "<Esc> :m .-2<CR>==") -- move line up(i)
-vim.keymap.set("i", "<A-down>", "<Esc> :m .+1<CR>==") -- move line down(i)
+vim.keymap.set("i", "<A-up>", "<Esc> :m .-2<CR>==i") -- move line up(i)
+vim.keymap.set("i", "<A-down>", "<Esc> :m .+1<CR>==i") -- move line down(i)
 vim.keymap.set("v", "<A-up>", ":m '<-2<CR>gv=gv") -- move selected line(s) up(v)
 vim.keymap.set("v", "<A-down>", ":m '>+1<CR>gv=gv") -- move selected line(s) up(v)
+
+-- Navigate panes with arrows or hjkl
+vim.keymap.set({"n", "i", "v"}, "<M-S-up>", "<C-w>k")
+vim.keymap.set({"n", "i", "v"}, "<M-S-down>", "<C-w>j")
+vim.keymap.set({"n", "i", "v"}, "<M-S-left>", "<C-w>h")
+vim.keymap.set({"n", "i", "v"}, "<M-S-right>", "<C-w>l")
+
+vim.keymap.set({"n", "i", "v"}, "<M-S-k>", "<C-w>k")
+vim.keymap.set({"n", "i", "v"}, "<M-S-j>", "<C-w>j")
+vim.keymap.set({"n", "i", "v"}, "<M-S-h>", "<C-w>h")
+vim.keymap.set({"n", "i", "v"}, "<M-S-l>", "<C-w>l")
+
+-- rwap orientation of panes 
+vim.keymap.set("n", "<leader>tv", "<C-w>t<C-w>H") -- to horizontal
+vim.keymap.set("n", "<leader>th", "<C-w>t<C-w>K") -- to vertical
+
+vim.keymap.set("n", "<M-v>", ":vsplit<cr>")
+vim.keymap.set("n", "<M-h>", ":split<cr>")
